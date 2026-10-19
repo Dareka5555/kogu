@@ -1,0 +1,42 @@
+{
+  // ── 整形: Prettier を唯一のフォーマッターに統一(役割重複の回避)──
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  // ── Lint: ESLint は保存時に自動修正のみ(整形は Prettier に任せる)──
+  // 値 "explicit" は vscode-eslint 公式の現行推奨形式
+  // ※ ESLint 10 は flat config が必須・既定のため eslint.useFlatConfig は不要(拡張側が無視する)
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // ── .astro も Prettier(prettier-plugin-astro 経由)で整形 ──
+  // Astro 拡張にも整形機能があるが、フォーマッターは Prettier に一本化
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // ── Markdown は編集時に折り返し表示 ──
+  "[markdown]": {
+    "editor.wordWrap": "on"
+  },
+
+  // ── VSCode 内蔵 TS ではなく、プロジェクト同梱の TypeScript 6 を使用 ──
+  // (プロジェクト作成後、node_modules が存在すると有効になる)
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  // ── 改行コードは LF に統一 ──
+  "files.eol": "\n",
+
+  // ── 検索・ファイル監視から生成物を除外 ──
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.astro": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/.astro/**": true
+  }
+}
